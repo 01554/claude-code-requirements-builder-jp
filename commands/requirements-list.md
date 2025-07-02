@@ -1,63 +1,63 @@
-# List All Requirements
+# 全要件のリスト表示
 
-Display all requirements with their status and summaries.
+すべての要件をステータスとサマリーと共に表示します。
 
-## Instructions:
+## 手順:
 
-1. Check requirements/.current-requirement for active requirement
-2. List all folders in requirements/ directory
-3. For each requirement folder:
-   - Read metadata.json
-   - Extract key information
-   - Format for display
+1. requirements/.current-requirement でアクティブな要件をチェック
+2. requirements/ ディレクトリ内の全フォルダをリスト
+3. 各要件フォルダについて:
+   - metadata.json を読み込む
+   - 主要情報を抽出
+   - 表示用にフォーマット
 
-4. Sort by:
-   - Active first (if any)
-   - Then by status: complete, incomplete
-   - Then by date (newest first)
+4. 並び順:
+   - アクティブな要件を最初に（ある場合）
+   - 次にステータス順: 完了、未完了
+   - そして日付順（新しいものから）
 
-## Display Format:
+## 表示フォーマット:
 ```
-📚 Requirements Documentation
+📚 要件ドキュメント
 
-🔴 ACTIVE: profile-picture-upload
-   Phase: Discovery (3/5) | Started: 30m ago
-   Next: Q4 about file restrictions
+🔴 アクティブ: profile-picture-upload
+   フェーズ: 発見フェーズ (3/5) | 開始: 30分前
+   次: ファイル制限に関するQ4
 
-✅ COMPLETE:
+✅ 完了:
 2025-01-26-0900-dark-mode-toggle
-   Status: Ready for implementation | 15 questions answered
-   Summary: Full theme system with user preferences
-   Linked PR: #234 (merged)
+   ステータス: 実装準備完了 | 15個の質問に回答済み
+   サマリー: ユーザー設定を含む完全なテーマシステム
+   関連PR: #234 (マージ済み)
 
 2025-01-25-1400-export-reports  
-   Status: Implemented | 22 questions answered
-   Summary: PDF/CSV export with filtering
+   ステータス: 実装済み | 22個の質問に回答済み
+   サマリー: フィルタリング付きPDF/CSVエクスポート
    
-⚠️ INCOMPLETE:
+⚠️ 未完了:
 2025-01-24-1100-notification-system
-   Status: Paused at Detail phase (2/8) | Last: 2 days ago
-   Summary: Email/push notifications for events
+   ステータス: 詳細フェーズで一時停止 (2/8) | 最終更新: 2日前
+   サマリー: イベント用のメール/プッシュ通知
    
-📈 Statistics:
-- Total: 4 requirements
-- Complete: 2 (13 avg questions)
-- Active: 1
-- Incomplete: 1
+📈 統計:
+- 合計: 4件の要件
+- 完了: 2件 (平均13個の質問)
+- アクティブ: 1件
+- 未完了: 1件
 ```
 
-## Additional Features:
+## 追加機能:
 
-1. Show linked artifacts:
-   - Development sessions
-   - Pull requests
-   - Implementation status
+1. 関連成果物の表示:
+   - 開発セッション
+   - プルリクエスト
+   - 実装ステータス
 
-2. Highlight stale requirements:
-   - Mark if incomplete > 7 days
-   - Suggest resuming or ending
+2. 古い要件のハイライト:
+   - 未完了で7日以上経過している場合マーク
+   - 再開または終了を提案
 
-3. Quick actions:
-   - "View details: /requirements-show [id]"
-   - "Resume incomplete: /requirements-status"
-   - "Start new: /requirements-start [description]"
+3. クイックアクション:
+   - "詳細を表示: /requirements-show [id]"
+   - "未完了を再開: /requirements-status"
+   - "新規開始: /requirements-start [description]"

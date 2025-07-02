@@ -1,284 +1,284 @@
-# Claude Requirements Gathering System
+# Claude 要件収集システム
 
-An intelligent requirements gathering system for Claude Code that progressively builds context through automated discovery, asks simple yes/no questions, and generates comprehensive requirements documentation.
+自動探索により段階的にコンテキストを構築し、シンプルなはい/いいえの質問を行い、包括的な要件ドキュメントを生成する、Claude Code向けのインテリジェントな要件収集システムです。
 
-## 🎯 Overview
+## 🎯 概要
 
-This system transforms the requirements gathering process by:
-- **Codebase-Aware Questions**: AI analyzes your code first, then asks informed questions
-- **Simple Yes/No Format**: All questions are yes/no with smart defaults - just say "idk" to use defaults
-- **Two-Phase Questioning**: 5 high-level questions for context, then 5 expert questions after code analysis  
-- **Automated Documentation**: Generates comprehensive specs with specific file paths and patterns
-- **Product Manager Friendly**: No code knowledge required to answer questions
+このシステムは要件収集プロセスを以下のように変革します：
+- **コードベース認識型の質問**: AIが最初にコードを分析し、その後で情報に基づいた質問をします
+- **シンプルなはい/いいえ形式**: すべての質問は賢いデフォルト設定付きのはい/いいえ形式 - わからない場合は「idk」と答えるだけでデフォルトを使用
+- **2段階の質問**: コンテキスト把握のための5つの高レベル質問、その後コード分析後の5つのエキスパート質問
+- **自動ドキュメント生成**: 特定のファイルパスとパターンを含む包括的な仕様を生成
+- **プロダクトマネージャーフレンドリー**: 質問に答えるのにコードの知識は不要
 
-## 🚀 Quick Start
+## 🚀 クイックスタート
 
 ```bash
-# Start gathering requirements for a new feature
+# 新機能の要件収集を開始
 /requirements-start add user profile picture upload
 
-# Check progress and continue
+# 進捗を確認して継続
 /requirements-status
 
-# View current requirement details
+# 現在の要件の詳細を表示
 /requirements-current
 
-# List all requirements
+# すべての要件をリスト表示
 /requirements-list
 
-# End current requirement gathering
+# 現在の要件収集を終了
 /requirements-end
 
-# Quick reminder if AI strays off course
+# AIが軌道から外れた場合のクイックリマインダー
 /remind
 ```
 
-## 📁 Repository Structure
+## 📁 リポジトリ構造
 
 ```
 claude-requirements/
-├── commands/                     # Claude command definitions
-│   ├── requirements-start.md    # Begin new requirement
-│   ├── requirements-status.md   # Check progress (alias: current)
-│   ├── requirements-current.md  # View active requirement
-│   ├── requirements-end.md      # Finalize requirement
-│   ├── requirements-list.md     # List all requirements
-│   └── requirements-remind.md   # Remind AI of rules
+├── commands/                     # Claude コマンド定義
+│   ├── requirements-start.md    # 新規要件の開始
+│   ├── requirements-status.md   # 進捗確認（エイリアス: current）
+│   ├── requirements-current.md  # アクティブな要件を表示
+│   ├── requirements-end.md      # 要件を最終化
+│   ├── requirements-list.md     # すべての要件をリスト表示
+│   └── requirements-remind.md   # AIにルールをリマインド
 │
-├── requirements/                 # Requirement documentation storage
-│   ├── .current-requirement     # Tracks active requirement
-│   ├── index.md                 # Summary of all requirements
-│   └── YYYY-MM-DD-HHMM-name/   # Individual requirement folders
-│       ├── metadata.json        # Status and progress tracking
-│       ├── 00-initial-request.md    # User's original request
-│       ├── 01-discovery-questions.md # 5 context questions
-│       ├── 02-discovery-answers.md   # User's answers
-│       ├── 03-context-findings.md    # AI's code analysis
-│       ├── 04-detail-questions.md    # 5 expert questions
-│       ├── 05-detail-answers.md      # User's detailed answers
-│       └── 06-requirements-spec.md   # Final requirements
+├── requirements/                 # 要件ドキュメントストレージ
+│   ├── .current-requirement     # アクティブな要件を追跡
+│   ├── index.md                 # すべての要件のサマリー
+│   └── YYYY-MM-DD-HHMM-name/   # 個別の要件フォルダ
+│       ├── metadata.json        # ステータスと進捗の追跡
+│       ├── 00-initial-request.md    # ユーザーの元のリクエスト
+│       ├── 01-discovery-questions.md # 5つのコンテキスト質問
+│       ├── 02-discovery-answers.md   # ユーザーの回答
+│       ├── 03-context-findings.md    # AIのコード分析
+│       ├── 04-detail-questions.md    # 5つのエキスパート質問
+│       ├── 05-detail-answers.md      # ユーザーの詳細な回答
+│       └── 06-requirements-spec.md   # 最終要件
 │
-└── examples/                     # Example requirements
+└── examples/                     # 要件の例
 ```
 
-## 🔄 How It Works
+## 🔄 動作の仕組み
 
-### Phase 1: Initial Setup & Codebase Analysis
+### フェーズ1: 初期セットアップとコードベース分析
 ```
 User: /requirements-start add export functionality to reports
 ```
-AI analyzes the entire codebase structure to understand the architecture, tech stack, and patterns.
+AIがコードベース全体の構造を分析し、アーキテクチャ、技術スタック、パターンを理解します。
 
-### Phase 2: Context Discovery Questions
-The AI asks 5 yes/no questions to understand the problem space:
+### フェーズ2: コンテキスト発見の質問
+AIが問題空間を理解するために5つのはい/いいえの質問をします：
 ```
-Q1: Will users interact with this feature through a visual interface?
-(Default if unknown: YES - most features have UI components)
+Q1: ユーザーはこの機能を視覚的なインターフェースで操作しますか？
+（不明な場合のデフォルト: はい - ほとんどの機能にはUIコンポーネントがあります）
 
-User: yes
+ユーザー: はい
 
-Q2: Does this feature need to work on mobile devices?
-(Default if unknown: YES - mobile-first is standard)
+Q2: この機能はモバイルデバイスで動作する必要がありますか？
+（不明な場合のデフォルト: はい - モバイルファーストが標準です）
 
-User: idk
-AI: ✓ Using default: YES
+ユーザー: idk
+AI: ✓ デフォルトを使用: はい
 
-[Continues through all 5 questions before recording answers]
-```
-
-### Phase 3: Targeted Context Gathering (Autonomous)
-AI autonomously:
-- Searches for specific files based on discovery answers
-- Reads relevant code sections
-- Analyzes similar features in detail
-- Documents technical constraints and patterns
-
-### Phase 4: Expert Requirements Questions
-With deep context, asks 5 detailed yes/no questions:
-```
-Q1: Should we use the existing ExportService at services/ExportService.ts?
-(Default if unknown: YES - maintains architectural consistency)
-
-User: yes
-
-Q2: Will PDF exports need custom formatting beyond the standard template?
-(Default if unknown: NO - standard template covers most use cases)
-
-User: no
-
-[Continues through all 5 questions before recording answers]
+[回答を記録する前に5つの質問すべてを続行]
 ```
 
-### Phase 5: Requirements Documentation
-Generates comprehensive spec with:
-- Problem statement and solution overview
-- Functional requirements from all 10 answers
-- Technical requirements with specific file paths
-- Implementation patterns to follow
-- Acceptance criteria
+### フェーズ3: ターゲットを絞ったコンテキスト収集（自律的）
+AIが自律的に：
+- 発見の回答に基づいて特定のファイルを検索
+- 関連するコードセクションを読み取り
+- 類似機能を詳細に分析
+- 技術的制約とパターンを文書化
 
-## 📋 Command Reference
+### フェーズ4: エキスパート要件の質問
+深いコンテキストで、5つの詳細なはい/いいえの質問をします：
+```
+Q1: services/ExportService.tsの既存のExportServiceを使用すべきですか？
+（不明な場合のデフォルト: はい - アーキテクチャの一貫性を維持）
+
+ユーザー: はい
+
+Q2: PDFエクスポートには標準テンプレート以外のカスタムフォーマットが必要ですか？
+（不明な場合のデフォルト: いいえ - 標準テンプレートがほとんどのユースケースをカバー）
+
+ユーザー: いいえ
+
+[回答を記録する前に5つの質問すべてを続行]
+```
+
+### フェーズ5: 要件ドキュメント
+以下を含む包括的な仕様を生成：
+- 問題のステートメントとソリューションの概要
+- 10個すべての回答からの機能要件
+- 特定のファイルパスを含む技術要件
+- 従うべき実装パターン
+- 受け入れ基準
+
+## 📋 コマンドリファレンス
 
 ### `/requirements-start [description]`
-Begins gathering requirements for a new feature or change.
+新機能や変更の要件収集を開始します。
 
-**Example:**
+**例:**
 ```
 /requirements-start implement dark mode toggle
 ```
 
-### `/requirements-status` or `/requirements-current`
-Shows current requirement progress and continues gathering.
+### `/requirements-status` または `/requirements-current`
+現在の要件の進捗を表示し、収集を継続します。
 
-**Output:**
+**出力:**
 ```
-📋 Active Requirement: dark-mode-toggle
-Phase: Discovery Questions
-Progress: 3/5 questions answered
+📋 アクティブな要件: dark-mode-toggle
+フェーズ: 発見の質問
+進捗: 3/5 の質問に回答済み
 
-Next: Q4: Should this sync across devices?
+次: Q4: これはデバイス間で同期すべきですか？
 ```
 
 ### `/requirements-end`
-Finalizes current requirement, even if incomplete.
+現在の要件を完了とします（不完全でも）。
 
-**Options:**
-1. Generate spec with current info
-2. Mark incomplete for later
-3. Cancel and delete
+**オプション:**
+1. 現在の情報で仕様を生成
+2. 後で続けるために未完了としてマーク
+3. キャンセルして削除
 
 ### `/requirements-list`
-Shows all requirements with their status.
+すべての要件とそのステータスを表示します。
 
-**Output:**
+**出力:**
 ```
-✅ COMPLETE: dark-mode-toggle (Ready for implementation)
-🔴 ACTIVE: user-notifications (Discovery 3/5)
-⚠️ INCOMPLETE: data-export (Paused 3 days ago)
+✅ 完了: dark-mode-toggle (実装準備完了)
+🔴 アクティブ: user-notifications (発見 3/5)
+⚠️ 未完了: data-export (3日前に一時停止)
 ```
 
-### `/remind` or `/requirements-remind`
-Reminds AI to follow requirements gathering rules.
+### `/remind` または `/requirements-remind`
+AIに要件収集のルールに従うよう再確認させます。
 
-**Use when AI:**
-- Asks open-ended questions
-- Starts implementing code
-- Asks multiple questions at once
+**AIが以下の時に使用:**
+- オープンエンドの質問をする
+- コードの実装を開始する
+- 一度に複数の質問をする
 
-## 🎯 Features
+## 🎯 機能
 
-### Smart Defaults
-Every question includes an intelligent default based on:
-- Best practices
-- Codebase patterns
-- Context discovered
+### スマートなデフォルト
+すべての質問には以下に基づいたインテリジェントなデフォルトが含まれます：
+- ベストプラクティス
+- コードベースのパターン
+- 発見されたコンテキスト
 
-### Progressive Questioning
-- **Phase 1**: Analyzes codebase structure first
-- **Phase 2**: 5 high-level questions for product managers
-- **Phase 3**: Autonomous deep dive into relevant code
-- **Phase 4**: 5 expert questions based on code understanding
+### 段階的な質問
+- **フェーズ1**: 最初にコードベース構造を分析
+- **フェーズ2**: プロダクトマネージャー向けの5つの高レベル質問
+- **フェーズ3**: 関連コードへの自律的な深い探索
+- **フェーズ4**: コード理解に基づいた5つのエキスパート質問
 
-### Automatic File Management
-- All files created automatically
-- Progress tracked between sessions
-- Can resume anytime
+### 自動ファイル管理
+- すべてのファイルを自動作成
+- セッション間で進捗を追跡
+- いつでも再開可能
 
-### Integration Ready
-- Links to development sessions
-- References PRs and commits
-- Searchable requirement history
+### 統合準備完了
+- 開発セッションへのリンク
+- PRとコミットの参照
+- 検索可能な要件履歴
 
-## 💡 Best Practices
+## 💡 ベストプラクティス
 
-### For Users
-1. **Be Specific**: Clear initial descriptions help AI ask better questions
-2. **Use Defaults**: "idk" is perfectly fine - defaults are well-reasoned
-3. **Stay Focused**: Use `/remind` if AI goes off track
-4. **Complete When Ready**: Don't feel obligated to answer every question
+### ユーザー向け
+1. **具体的に**: 明確な初期説明がAIのより良い質問を助けます
+2. **デフォルトを使用**: 「idk」は完全に問題ありません - デフォルトは十分に考慮されています
+3. **集中を保つ**: AIが軌道から外れたら `/remind` を使用
+4. **準備ができたら完了**: すべての質問に答える義務を感じる必要はありません
 
-### For Requirements
-1. **One Feature at a Time**: Keep requirements focused
-2. **Think Implementation**: Consider how another AI will use this
-3. **Document Decisions**: The "why" is as important as the "what"
-4. **Link Everything**: Connect requirements to sessions and PRs
+### 要件向け
+1. **一度に1つの機能**: 要件を集中的に保つ
+2. **実装を考える**: 別のAIがどのようにこれを使用するかを考慮
+3. **決定を文書化**: 「なぜ」は「何を」と同じくらい重要
+4. **すべてをリンク**: 要件をセッションとPRに接続
 
-## 🔧 Installation
+## 🔧 インストール
 
-1. Clone this repository:
+1. このリポジトリをクローン:
 ```bash
 git clone https://github.com/rizethereum/claude-code-requirements-builder.git
 ```
 
-2. Copy the commands to your project:
+2. コマンドをプロジェクトにコピー:
 ```bash
 cp -r commands ~/.claude/commands/
-# OR for project-specific
+# または プロジェクト固有の場合
 cp -r commands /your/project/.claude/commands/
 ```
 
-3. Create requirements directory:
+3. 要件ディレクトリを作成:
 ```bash
 mkdir -p requirements
 touch requirements/.current-requirement
 ```
 
-4. Add to `.gitignore` if needed:
+4. 必要に応じて `.gitignore` に追加:
 ```
 requirements/
 ```
 
-## 📚 Examples
+## 📚 例
 
-### Feature Development
+### 機能開発
 ```
 /requirements-start add user avatar upload
-# AI analyzes codebase structure
-# Answer 5 yes/no questions about the feature
-# AI autonomously researches relevant code
-# Answer 5 expert yes/no questions
-# Get comprehensive requirements doc with file paths
+# AIがコードベース構造を分析
+# 機能について5つのはい/いいえの質問に回答
+# AIが関連コードを自律的に調査
+# 5つのエキスパートはい/いいえの質問に回答
+# ファイルパスを含む包括的な要件ドキュメントを取得
 ```
 
-### Bug Fix Requirements
+### バグ修正の要件
 ```
 /requirements-start fix dashboard performance issues
-# Answer questions about scope
-# AI identifies problematic components
-# Answer questions about acceptable solutions
-# Get targeted fix requirements
+# スコープについての質問に回答
+# AIが問題のあるコンポーネントを特定
+# 受け入れ可能な解決策についての質問に回答
+# ターゲットを絞った修正要件を取得
 ```
 
-### UI Enhancement
+### UI強化
 ```
 /requirements-start improve mobile navigation experience
-# Answer questions about current issues
-# AI analyzes existing navigation
-# Answer questions about desired behavior
-# Get detailed UI requirements
+# 現在の問題についての質問に回答
+# AIが既存のナビゲーションを分析
+# 望ましい動作についての質問に回答
+# 詳細なUI要件を取得
 ```
 
-## 🤝 Contributing
+## 🤝 貢献
 
-1. Fork the repository
-2. Create your feature branch
-3. Add new commands or improve existing ones
-4. Submit a pull request
+1. リポジトリをフォーク
+2. 機能ブランチを作成
+3. 新しいコマンドを追加または既存のものを改善
+4. プルリクエストを送信
 
-### Ideas for Contribution
-- Add requirement templates for common features
-- Create requirement validation commands
-- Build requirement-to-implementation tracking
-- Add multi-language question support
+### 貢献のアイデア
+- 一般的な機能の要件テンプレートを追加
+- 要件検証コマンドを作成
+- 要件から実装への追跡を構築
+- 多言語質問サポートを追加
 
-## 📄 License
+## 📄 ライセンス
 
-MIT License - Feel free to use and modify for your projects.
+MIT ライセンス - プロジェクトで自由に使用・修正してください。
 
-## 🙏 Acknowledgments
+## 🙏 謝辞
 
-Inspired by [@iannuttall](https://github.com/iannuttall)'s [claude-sessions](https://github.com/iannuttall/claude-sessions) project, which pioneered the concept of structured session management for Claude Code.
+[@iannuttall](https://github.com/iannuttall)の[claude-sessions](https://github.com/iannuttall/claude-sessions)プロジェクトにインスパイアされました。このプロジェクトはClaude Code向けの構造化されたセッション管理の概念を開拓しました。
 
 ---
 
-**Remember**: Good requirements today prevent confusion tomorrow!
+**覚えておいてください**: 今日の良い要件は明日の混乱を防ぎます！
