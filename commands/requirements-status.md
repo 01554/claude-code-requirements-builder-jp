@@ -1,42 +1,42 @@
-# Check Requirements Status
+# 要件ステータスの確認
 
-Show current requirement gathering progress and continue.
+現在の要件収集の進捗を表示し、続行します。
 
-## Instructions:
+## 手順:
 
-1. Read requirements/.current-requirement
-2. If no active requirement:
-   - Show message: "No active requirement gathering"
-   - Suggest /requirements-start or /requirements-list
-   - Exit
+1. requirements/.current-requirement を読み込む
+2. アクティブな要件がない場合:
+   - メッセージを表示: "アクティブな要件収集がありません"
+   - /requirements-start または /requirements-list を提案
+   - 終了
 
-3. If active requirement exists:
-   - Read metadata.json for current phase and progress
-   - Show formatted status
-   - Load appropriate question/answer files
-   - Continue from last unanswered question
+3. アクティブな要件が存在する場合:
+   - 現在のフェーズと進捗のために metadata.json を読み込む
+   - フォーマットされたステータスを表示
+   - 適切な質問/回答ファイルを読み込む
+   - 最後の未回答質問から続行
 
-## Status Display Format:
+## ステータス表示フォーマット:
 ```
-📋 Active Requirement: [name]
-Started: [time ago]
-Phase: [Discovery/Detail]
-Progress: [X/Y] questions answered
+📋 アクティブな要件: [name]
+開始: [時間前]
+フェーズ: [発見/詳細]
+進捗: [X/Y] 個の質問に回答済み
 
-[Show last 3 answered questions with responses]
+[回答付きの最後の3つの質問を表示]
 
-Next Question:
-[Show next unanswered question with default]
+次の質問:
+[デフォルト付きの次の未回答質問を表示]
 ```
 
-## Continuation Flow:
-1. Read next unanswered question from file
-2. Present to user with default
-3. Accept yes/no/idk response
-4. Update answer file
-5. Update metadata progress
-6. Move to next question or phase
+## 継続フロー:
+1. ファイルから次の未回答質問を読み込む
+2. デフォルト付きでユーザーに提示
+3. yes/no/idk の回答を受け付ける
+4. 回答ファイルを更新
+5. メタデータの進捗を更新
+6. 次の質問またはフェーズに移動
 
-## Phase Transitions:
-- Discovery complete → Run context gathering → Generate detail questions
-- Detail complete → Generate final requirements spec
+## フェーズ遷移:
+- 発見完了 → コンテキスト収集を実行 → 詳細質問を生成
+- 詳細完了 → 最終要件仕様を生成

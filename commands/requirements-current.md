@@ -1,72 +1,72 @@
-# View Current Requirement
+# 現在の要件を表示
 
-Display detailed information about the active requirement.
+アクティブな要件に関する詳細情報を表示します。
 
-## Instructions:
+## 手順:
 
-1. Read requirements/.current-requirement
-2. If no active requirement:
-   - Show "No active requirement"
-   - Display last 3 completed requirements
-   - Exit
+1. requirements/.current-requirement を読み取る
+2. アクティブな要件がない場合:
+   - "アクティブな要件はありません" を表示
+   - 最後の3つの完了済み要件を表示
+   - 終了
 
-3. For active requirement:
-   - Load all files from requirement folder
-   - Display comprehensive status
-   - Show codebase analysis overview
-   - Show all questions and answers so far
-   - Display context findings if available
-   - Indicate current phase and next steps
+3. アクティブな要件がある場合:
+   - 要件フォルダからすべてのファイルをロード
+   - 包括的なステータスを表示
+   - コードベース分析の概要を表示
+   - これまでのすべての質問と回答を表示
+   - 利用可能な場合はコンテキスト調査結果を表示
+   - 現在のフェーズと次のステップを示す
 
-## File Structure:
-- 00-initial-request.md - Original user request
-- 01-discovery-questions.md - Context discovery questions
-- 02-discovery-answers.md - User's answers
-- 03-context-findings.md - AI's codebase analysis
-- 04-detail-questions.md - Expert requirements questions
-- 05-detail-answers.md - User's detailed answers
-- 06-requirements-spec.md - Final requirements document
+## ファイル構造:
+- 00-initial-request.md - ユーザーの元のリクエスト
+- 01-discovery-questions.md - コンテキスト発見の質問
+- 02-discovery-answers.md - ユーザーの回答
+- 03-context-findings.md - AIのコードベース分析
+- 04-detail-questions.md - エキスパート要件の質問
+- 05-detail-answers.md - ユーザーの詳細な回答
+- 06-requirements-spec.md - 最終要件ドキュメント
 
-## Display Format:
+## 表示形式:
 ```
-📋 Current Requirement: [name]
-⏱️  Duration: [time since start]
-📊 Phase: [Initial Setup/Context Discovery/Targeted Context/Expert Requirements/Complete]
-🎯 Progress: [total answered]/[total questions]
+📋 現在の要件: [name]
+⏱️  経過時間: [開始からの時間]
+📊 フェーズ: [初期セットアップ/コンテキスト発見/ターゲットコンテキスト/エキスパート要件/完了]
+🎯 進捗: [回答済み]/[合計質問数]
 
-📄 Initial Request:
-[Show content from 00-initial-request.md]
+📄 初期リクエスト:
+[00-initial-request.mdの内容を表示]
 
-🏗️ Codebase Overview (Phase 1):
-- Architecture: [e.g., React + Node.js + PostgreSQL]
-- Main components: [identified services/modules]
-- Key patterns: [discovered conventions]
+🏗️ コードベース概要 (フェーズ1):
+- アーキテクチャ: [例: React + Node.js + PostgreSQL]
+- 主要コンポーネント: [特定されたサービス/モジュール]
+- 主要パターン: [発見された規約]
 
-✅ Context Discovery Phase (5/5 complete):
-Q1: Will users interact through a visual interface? YES
-Q2: Does this need to work on mobile? YES
-Q3: Will this handle sensitive data? NO
-Q4: Do users have a current workaround? YES (default)
-Q5: Will this need offline support? IDK → NO (default)
+✅ コンテキスト発見フェーズ (5/5 完了):
+Q1: ユーザーは視覚的なインターフェースで操作しますか？ はい
+Q2: これはモバイルで動作する必要がありますか？ はい
+Q3: これは機密データを扱いますか？ いいえ
+Q4: ユーザーには現在の回避策がありますか？ はい (デフォルト)
+Q5: これはオフラインサポートが必要ですか？ IDK → いいえ (デフォルト)
 
-🔍 Targeted Context Findings:
-- Specific files identified: [list key files]
-- Similar feature: UserProfile at components/UserProfile.tsx
-- Integration points: AuthService, ValidationService
-- Technical constraints: Rate limiting required
+🔍 ターゲットコンテキストの調査結果:
+- 特定されたファイル: [主要ファイルをリスト]
+- 類似機能: components/UserProfile.tsxのUserProfile
+- 統合ポイント: AuthService, ValidationService
+- 技術的制約: レート制限が必要
 
-🎯 Expert Requirements Phase (2/8 answered):
-Q1: Use existing ValidationService at services/validation.ts? YES
-Q2: Extend UserModel at models/User.ts? YES
-Q3: Add new API endpoint to routes/api/v1? [PENDING]
+🎯 エキスパート要件フェーズ (2/8 回答済み):
+Q1: services/validation.tsの既存のValidationServiceを使用？ はい
+Q2: models/User.tsのUserModelを拡張？ はい
+Q3: routes/api/v1に新しいAPIエンドポイントを追加？ [保留中]
 ...
 
-📝 Next Action:
-- Continue with /requirements-status
-- End early with /requirements-end
+📝 次のアクション:
+- /requirements-statusで続行
+- /requirements-endで早期終了
 ```
 
-## Important:
-- This is view-only (doesn't continue gathering)
-- Shows complete history and context
-- Use /requirements-status to continue
+## 重要:
+- これは表示専用です（収集を続行しません）
+- 完全な履歴とコンテキストを表示
+- 続行するには /requirements-status を使用

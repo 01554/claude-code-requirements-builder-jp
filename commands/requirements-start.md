@@ -1,105 +1,105 @@
-# Start Requirements Gathering
+# 要件収集の開始
 
-Begin gathering requirements for: $ARGUMENTS
+以下の要件収集を開始: $ARGUMENTS
 
-## Full Workflow:
+## 完全なワークフロー:
 
-### Phase 1: Initial Setup & Codebase Analysis
-1. Create timestamp-based folder: requirements/YYYY-MM-DD-HHMM-[slug]
-2. Extract slug from $ARGUMENTS (e.g., "add user profile" → "user-profile")
-3. Create initial files:
-   - 00-initial-request.md with the user's request
-   - metadata.json with status tracking
-4. Read and update requirements/.current-requirement with folder name
-5. Use mcp__RepoPrompt__get_file_tree (if available) to understand overall structure:
-   - Get high-level architecture overview
-   - Identify main components and services
-   - Understand technology stack
-   - Note patterns and conventions
+### フェーズ 1: 初期セットアップとコードベース分析
+1. タイムスタンプベースのフォルダを作成: requirements/YYYY-MM-DD-HHMM-[slug]
+2. $ARGUMENTS からスラグを抽出（例: "add user profile" → "user-profile"）
+3. 初期ファイルを作成:
+   - ユーザーのリクエストを含む 00-initial-request.md
+   - ステータス追跡用の metadata.json
+4. requirements/.current-requirement を読み込み、フォルダ名で更新
+5. mcp__RepoPrompt__get_file_tree（利用可能な場合）を使用して全体構造を理解:
+   - 高レベルのアーキテクチャ概要を取得
+   - 主要なコンポーネントとサービスを特定
+   - 技術スタックを理解
+   - パターンと慣習を記録
 
-### Phase 2: Context Discovery Questions
-6. Generate the five most important yes/no questions to understand the problem space:
-   - Questions informed by codebase structure
-   - Questions about user interactions and workflows
-   - Questions about similar features users currently use
-   - Questions about data/content being worked with
-   - Questions about external integrations or third-party services
-   - Questions about performance or scale expectations
-   - Write all questions to 01-discovery-questions.md with smart defaults
-   - Begin asking questions one at a time proposing the question with a smart default option
-   - Only after all questions are asked, record answers in 02-discovery-answers.md as received and update metadata.json. Not before.
+### フェーズ 2: コンテキスト発見質問
+6. 問題領域を理解するための最も重要な5つのyes/no質問を生成:
+   - コードベース構造に基づいた質問
+   - ユーザーインタラクションとワークフローに関する質問
+   - ユーザーが現在使用している類似機能に関する質問
+   - 作業対象のデータ/コンテンツに関する質問
+   - 外部統合やサードパーティサービスに関する質問
+   - パフォーマンスやスケールの期待値に関する質問
+   - スマートデフォルト付きですべての質問を 01-discovery-questions.md に書く
+   - スマートデフォルトオプションを提案して一度に1つずつ質問を開始
+   - すべての質問を聞いた後でのみ、受け取った回答を 02-discovery-answers.md に記録し、metadata.json を更新。それ以前は記録しない。
 
-### Phase 3: Targeted Context Gathering (Autonomous)
-7. After all discovery questions answered:
-   - Use mcp__RepoPrompt__search (if available) to find specific files based on discovery answers
-   - Use mcp__RepoPrompt__set_selection and read_selected_files (if available) to batch read relevant code
-   - Deep dive into similar features and patterns
-   - Analyze specific implementation details
-   - Use WebSearch and or context7 for best practices or library documentation
-   - Document findings in 03-context-findings.md including:
-     - Specific files that need modification
-     - Exact patterns to follow
-     - Similar features analyzed in detail
-     - Technical constraints and considerations
-     - Integration points identified
+### フェーズ 3: ターゲットコンテキスト収集（自律的）
+7. すべての発見質問に回答した後:
+   - 発見回答に基づいて特定のファイルを見つけるために mcp__RepoPrompt__search（利用可能な場合）を使用
+   - 関連コードをバッチで読み込むために mcp__RepoPrompt__set_selection と read_selected_files（利用可能な場合）を使用
+   - 類似機能とパターンを深く探究
+   - 特定の実装詳細を分析
+   - ベストプラクティスやライブラリドキュメントのために WebSearch や context7 を使用
+   - 以下を含む発見事項を 03-context-findings.md に文書化:
+     - 変更が必要な特定のファイル
+     - 従うべき正確なパターン
+     - 詳細に分析された類似機能
+     - 技術的な制約と考慮事項
+     - 特定された統合ポイント
 
-### Phase 4: Expert Requirements Questions
-8. Now ask questions like a senior developer who knows the codebase:
-   - Write the top 5 most pressing unanswered detailed yes/no questions to 04-detail-questions.md
-   - Questions should be as if you were speaking to the product manager who knows nothing of the code
-   - These questions are meant to to clarify expected system behavior now that you have a deep understanding of the code
-   - Include smart defaults based on codebase patterns
-   - Ask questions one at a time
-   - Only after all questions are asked, record answers in 05-detail-answers.md as received
+### フェーズ 4: エキスパート要件質問
+8. コードベースを知っているシニア開発者のように質問:
+   - 最も重要な未回答の詳細なyes/no質問トップ5を 04-detail-questions.md に書く
+   - コードを何も知らないプロダクトマネージャーに話すかのような質問にする
+   - これらの質問は、コードを深く理解した上で、期待されるシステム動作を明確にするためのもの
+   - コードベースのパターンに基づいたスマートデフォルトを含める
+   - 一度に1つずつ質問する
+   - すべての質問を聞いた後でのみ、受け取った回答を 05-detail-answers.md に記録
 
-### Phase 5: Requirements Documentation
-9. Generate comprehensive requirements spec in 06-requirements-spec.md:
-   - Problem statement and solution overview
-   - Functional requirements based on all answers
-   - Technical requirements with specific file paths
-   - Implementation hints and patterns to follow
-   - Acceptance criteria
-   - Assumptions for any unanswered questions
+### フェーズ 5: 要件ドキュメント作成
+9. 包括的な要件仕様を 06-requirements-spec.md に生成:
+   - 問題の説明とソリューション概要
+   - すべての回答に基づく機能要件
+   - 特定のファイルパスを含む技術要件
+   - 実装ヒントと従うべきパターン
+   - 受け入れ基準
+   - 未回答の質問に対する前提条件
 
-## Question Formats:
+## 質問フォーマット:
 
-### Discovery Questions (Phase 2):
+### 発見質問（フェーズ 2）:
 ```
-## Q1: Will users interact with this feature through a visual interface?
-**Default if unknown:** Yes (most features have some UI component)
+## Q1: ユーザーはこの機能をビジュアルインターフェースを通じて操作しますか？
+**不明な場合のデフォルト:** はい（ほとんどの機能には何らかのUIコンポーネントがあります）
 
-## Q2: Does this feature need to work on mobile devices?
-**Default if unknown:** Yes (mobile-first is standard practice)
+## Q2: この機能はモバイルデバイスで動作する必要がありますか？
+**不明な場合のデフォルト:** はい（モバイルファーストが標準的なプラクティスです）
 
-## Q3: Will this feature handle sensitive or private user data?
-**Default if unknown:** Yes (better to be secure by default)
+## Q3: この機能は機密またはプライベートなユーザーデータを扱いますか？
+**不明な場合のデフォルト:** はい（デフォルトでセキュアにする方が良いです）
 
-## Q4: Do users currently have a workaround for this problem?
-**Default if unknown:** No (assuming this solves a new need)
+## Q4: ユーザーは現在、この問題に対して回避策を持っていますか？
+**不明な場合のデフォルト:** いいえ（これが新しいニーズを解決すると仮定）
 
-## Q5: Will this feature need to work offline?
-**Default if unknown:** No (most features require connectivity)
-```
-
-### Expert Questions (Phase 4):
-```
-## Q7: Should we extend the existing UserService at services/UserService.ts?
-**Default if unknown:** Yes (maintains architectural consistency)
-
-## Q8: Will this require new database migrations in db/migrations/?
-**Default if unknown:** No (based on similar features not requiring schema changes)
+## Q5: この機能はオフラインで動作する必要がありますか？
+**不明な場合のデフォルト:** いいえ（ほとんどの機能は接続が必要です）
 ```
 
-## Important Rules:
-- ONLY yes/no questions with smart defaults
-- ONE question at a time
-- Write ALL questions to file BEFORE asking any
-- Stay focused on requirements (no implementation)
-- Use actual file paths and component names in detail phase
-- Document WHY each default makes sense
-- Use tools available if recommended ones aren't installed or available
+### エキスパート質問（フェーズ 4）:
+```
+## Q7: services/UserService.ts の既存の UserService を拡張すべきでしょうか？
+**不明な場合のデフォルト:** はい（アーキテクチャの一貫性を保ちます）
 
-## Metadata Structure:
+## Q8: db/migrations/ に新しいデータベースマイグレーションが必要でしょうか？
+**不明な場合のデフォルト:** いいえ（類似機能がスキーマ変更を必要としないことに基づく）
+```
+
+## 重要なルール:
+- スマートデフォルト付きのyes/no質問のみ
+- 一度に1つの質問
+- 質問する前にすべての質問をファイルに書く
+- 要件に焦点を当てる（実装はしない）
+- 詳細フェーズでは実際のファイルパスとコンポーネント名を使用
+- 各デフォルトが理にかなっている理由を文書化
+- 推奨されるツールがインストールされていないか利用不可の場合は、利用可能なツールを使用
+
+## メタデータ構造:
 ```json
 {
   "id": "feature-slug",
@@ -116,7 +116,7 @@ Begin gathering requirements for: $ARGUMENTS
 }
 ```
 
-## Phase Transitions:
-- After each phase, announce: "Phase complete. Starting [next phase]..."
-- Save all work before moving to next phase
-- User can check progress anytime with /requirements-status
+## フェーズ遷移:
+- 各フェーズの後、アナウンス: "フェーズ完了。[次のフェーズ]を開始します..."
+- 次のフェーズに移る前にすべての作業を保存
+- ユーザーはいつでも /requirements-status で進捗を確認可能

@@ -1,80 +1,80 @@
-# Requirements Gathering Reminder
+# 要件収集リマインダー
 
-Quick correction when deviating from requirements gathering rules.
+要件収集ルールから逸脱した際の迅速な修正。
 
-## Aliases:
+## エイリアス:
 - /requirements-remind
 - /remind  
 - /r
 
-## Instructions:
+## 手順:
 
-1. Check requirements/.current-requirement
-2. If no active requirement:
-   - Show "No active requirement gathering session"
-   - Exit
+1. requirements/.current-requirement をチェック
+2. アクティブな要件がない場合:
+   - "アクティブな要件収集セッションがありません" と表示
+   - 終了
 
-3. Display reminder based on current context:
+3. 現在のコンテキストに基づいてリマインダーを表示:
 
 ```
-🔔 Requirements Gathering Reminder
+🔔 要件収集リマインダー
 
-You are gathering requirements for: [active-requirement]
-Current phase: [Initial Setup/Context Discovery/Targeted Context/Expert Requirements]  
-Progress: [X/Y questions]
+要件収集中: [active-requirement]
+現在のフェーズ: [初期セットアップ/コンテキスト発見/ターゲットコンテキスト/エキスパート要件]  
+進捗: [X/Y 質問]
 
-📋 PHASE-SPECIFIC RULES:
+📋 フェーズ別ルール:
 
-Phase 2 - Context Discovery:
-- ✅ Ask 5 yes/no questions about the problem space
-- ✅ Questions for product managers (no code knowledge required)
-- ✅ Focus on user workflows, not technical details
-- ✅ Write ALL questions before asking any
-- ✅ Record answers ONLY after all questions asked
+フェーズ 2 - コンテキスト発見:
+- ✅ 問題領域について5つのyes/no質問を行う
+- ✅ プロダクトマネージャー向けの質問（コード知識不要）
+- ✅ 技術的詳細ではなくユーザーワークフローに焦点を当てる
+- ✅ 質問する前にすべての質問を書く
+- ✅ すべての質問を聞いてから回答を記録する
 
-Phase 3 - Targeted Context (Autonomous):
-- ✅ Use RepoPrompt tools to search and read code
-- ✅ Analyze similar features and patterns
-- ✅ Document findings in context file
-- ❌ No user interaction during this phase
+フェーズ 3 - ターゲットコンテキスト（自律的）:
+- ✅ RepoPromptツールを使用してコードを検索・読み込む
+- ✅ 類似機能とパターンを分析
+- ✅ コンテキストファイルに発見事項を文書化
+- ❌ このフェーズ中はユーザーとの対話なし
 
-Phase 4 - Expert Requirements:
-- ✅ Ask 5 detailed yes/no questions
-- ✅ Questions as if speaking to PM who knows no code
-- ✅ Clarify expected system behavior
-- ✅ Reference specific files when relevant
-- ✅ Record answers ONLY after all questions asked
+フェーズ 4 - エキスパート要件:
+- ✅ 5つの詳細なyes/no質問を行う
+- ✅ コードを知らないPMに話すような質問
+- ✅ 期待されるシステム動作を明確化
+- ✅ 関連する場合は特定のファイルを参照
+- ✅ すべての質問を聞いてから回答を記録する
 
-🚫 GENERAL RULES:
-1. ❌ Don't start coding or implementing
-2. ❌ Don't ask open-ended questions
-3. ❌ Don't record answers until ALL questions in phase are asked
-4. ❌ Don't exceed 5 questions per phase
+🚫 一般ルール:
+1. ❌ コーディングや実装を開始しない
+2. ❌ オープンエンドな質問をしない
+3. ❌ フェーズ内のすべての質問を聞くまで回答を記録しない
+4. ❌ フェーズごとに5つを超える質問をしない
 
-📍 CURRENT STATE:
-- Last question: [Show last question]
-- User response: [pending/answered]
-- Next action: [Continue with question X of 5]
+📍 現在の状態:
+- 最後の質問: [最後の質問を表示]
+- ユーザーの回答: [保留中/回答済み]
+- 次のアクション: [5つのうちX番目の質問を続ける]
 
-Please continue with the current question or read the next one from the file.
+現在の質問を続けるか、ファイルから次の質問を読んでください。
 ```
 
-## Common Correction Scenarios:
+## よくある修正シナリオ:
 
-### Open-ended question asked:
-"Let me rephrase as a yes/no question..."
+### オープンエンドな質問をした場合:
+"yes/no質問として言い直させてください..."
 
-### Multiple questions asked:
-"Let me ask one question at a time..."
+### 複数の質問をした場合:
+"一度に1つの質問をさせてください..."
 
-### Implementation started:
-"I apologize. Let me continue with requirements gathering..."
+### 実装を開始した場合:
+"申し訳ありません。要件収集を続けさせてください..."
 
-### No default provided:
-"Let me add a default for that question..."
+### デフォルトを提供しなかった場合:
+"その質問にデフォルトを追加させてください..."
 
-## Auto-trigger Patterns:
-- Detect code blocks → remind no implementation
-- Multiple "?" in response → remind one question
-- Response > 100 words → remind to be concise
-- Open-ended words ("what", "how") → remind yes/no only
+## 自動トリガーパターン:
+- コードブロックを検出 → 実装なしを再通知
+- 応答に複数の「？」→ 1つの質問を再通知
+- 100語を超える応答 → 簡潔さを再通知
+- オープンエンドな単語（「何」、「どのように」）→ yes/noのみを再通知

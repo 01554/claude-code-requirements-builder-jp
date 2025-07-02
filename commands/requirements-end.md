@@ -1,74 +1,74 @@
-# End Requirements Gathering
+# 要件収集の終了
 
-Finalize the current requirement gathering session.
+現在の要件収集セッションを終了します。
 
-## Instructions:
+## 手順:
 
-1. Read requirements/.current-requirement
-2. If no active requirement:
-   - Show "No active requirement to end"
-   - Exit
+1. requirements/.current-requirement を読み込む
+2. アクティブな要件がない場合:
+   - "終了する要件がありません" と表示
+   - 終了
 
-3. Show current status and ask user intent:
+3. 現在のステータスを表示し、ユーザーの意図を確認:
    ```
-   ⚠️ Ending requirement: [name]
-   Current phase: [phase] ([X/Y] complete)
+   ⚠️ 要件を終了します: [name]
+   現在のフェーズ: [phase] ([X/Y] 完了)
    
-   What would you like to do?
-   1. Generate spec with current information
-   2. Mark as incomplete for later
-   3. Cancel and delete
+   どのように処理しますか？
+   1. 現在の情報で仕様書を生成
+   2. 後で続けるため未完了としてマーク
+   3. キャンセルして削除
    ```
 
-4. Based on choice:
+4. 選択に基づいて処理:
 
-### Option 1: Generate Spec
-- Create 06-requirements-spec.md
-- Include all answered questions
-- Add defaults for unanswered with "ASSUMED:" prefix
-- Generate implementation hints
-- Update metadata status to "complete"
+### オプション 1: 仕様書の生成
+- 06-requirements-spec.md を作成
+- 回答済みの全質問を含める
+- 未回答の質問には "想定:" プレフィックスでデフォルト値を追加
+- 実装のヒントを生成
+- メタデータのステータスを "complete" に更新
 
-### Option 2: Mark Incomplete
-- Update metadata status to "incomplete"
-- Add "lastUpdated" timestamp
-- Create summary of progress
-- Note what's still needed
+### オプション 2: 未完了としてマーク
+- メタデータのステータスを "incomplete" に更新
+- "lastUpdated" タイムスタンプを追加
+- 進捗のサマリーを作成
+- まだ必要な項目を記録
 
-### Option 3: Cancel
-- Confirm deletion
-- Remove requirement folder
-- Clear .current-requirement
+### オプション 3: キャンセル
+- 削除を確認
+- 要件フォルダを削除
+- .current-requirement をクリア
 
-## Final Spec Format:
+## 最終仕様書のフォーマット:
 ```markdown
-# Requirements Specification: [Name]
+# 要件仕様書: [Name]
 
-Generated: [timestamp]
-Status: [Complete with X assumptions / Partial]
+生成日時: [timestamp]
+ステータス: [X個の想定を含む完了 / 部分的]
 
-## Overview
-[Problem statement and solution summary]
+## 概要
+[問題の説明とソリューションのサマリー]
 
-## Detailed Requirements
+## 詳細要件
 
-### Functional Requirements
-[Based on answered questions]
+### 機能要件
+[回答された質問に基づく]
 
-### Technical Requirements
-- Affected files: [list with paths]
-- New components: [if any]
-- Database changes: [if any]
+### 技術要件
+- 影響を受けるファイル: [パス付きリスト]
+- 新規コンポーネント: [ある場合]
+- データベース変更: [ある場合]
 
-### Assumptions
-[List any defaults used for unanswered questions]
+### 前提条件
+[未回答の質問に使用されたデフォルト値のリスト]
 
-### Implementation Notes
-[Specific guidance for implementation]
+### 実装メモ
+[実装のための具体的なガイダンス]
 
-### Acceptance Criteria
-[Testable criteria for completion]
+### 受け入れ基準
+[完了のためのテスト可能な基準]
 ```
 
-5. Clear .current-requirement
-6. Update requirements/index.md
+5. .current-requirement をクリア
+6. requirements/index.md を更新
